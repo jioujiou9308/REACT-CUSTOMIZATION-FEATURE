@@ -1,3 +1,52 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "settings": {
+    "import/resolver": {
+      "jsconfig": {
+        "config": "jsconfig.json",
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows for the use of imports
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
+    }
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:security/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "env": {
+    "jest/globals": true
+  },
+  "plugins": ["simple-import-sort", "react-hooks", "jest", "import"],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "(useRecoilCallback|useRecoilTransaction_UNSTABLE)"
+      }
+    ],
+    "import/extensions": ["error", "never"],
+    "import/no-unresolved": "error",
+    "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
+    "react/prop-types": [0],
+    "no-param-reassign": 0
+  }
 }
