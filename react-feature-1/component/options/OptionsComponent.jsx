@@ -3,14 +3,17 @@ import React, { useState, useEffect } from "react";
 export default function OptionsComponent({ options }) {
   const [select, setSelect] = useState([]);
   const [displayOptions, setDisplayOptions] = useState([]);
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    select.length > 0
-      ? setDisplayOptions(() =>
-          options.filter((option) => select.includes(option.value))
-        )
-      : setDisplayOptions([]);
-
+    if (!firstRender) {
+      select.length > 0
+        ? setDisplayOptions(() =>
+            options.filter((option) => select.includes(option.value))
+          )
+        : setDisplayOptions([...options]);
+    }
+    setFirstRender(false);
   }, [select]);
 
   function handleOptionChange(e) {
