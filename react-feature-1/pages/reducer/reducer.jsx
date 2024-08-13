@@ -38,7 +38,7 @@ const MyComponent = () => {
   //使用解構賦值將Hook return的兩個東西：當前值state，跟操作機制dispatch抓出。
   //有關dispatch跟state的用法見下方
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  console.log("reducer component render");
   return (
     <div>
       <p>Count: {state.count}</p>
