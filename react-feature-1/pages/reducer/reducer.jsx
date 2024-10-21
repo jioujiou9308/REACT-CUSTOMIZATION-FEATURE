@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 
 //初始狀態設定
 const initialState = {
@@ -39,6 +39,9 @@ const MyComponent = () => {
   //有關dispatch跟state的用法見下方
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("reducer component render");
+  useEffect(()=>{
+    console.log("state", state);
+  },[state])
   return (
     <div>
       <p>Count: {state.count}</p>
