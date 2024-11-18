@@ -1,5 +1,6 @@
-import React, { useReducer, useEffect } from "react";
-
+import React, { useReducer, useEffect, useContext } from "react";
+import { ReducerContext } from "../_app";
+import Link from "next/link";
 //初始狀態設定
 const initialState = {
   count: 0,
@@ -14,6 +15,7 @@ const initialState = {
 //這邊入參的state跟action是必寫的內容，
 //useReducer會自動把需要用到的資料丟state跟action，我們在這邊只要保留這兩個入口就好了。
 const reducer = (state, action) => {
+  console.log("state~~~~~~", state);
   switch (action.type) {
     case "INCREMENT":
       return { ...state, count: state.count + 1 };
@@ -39,9 +41,11 @@ const MyComponent = () => {
   //有關dispatch跟state的用法見下方
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log("reducer component render");
-  useEffect(()=>{
-    console.log("state", state);
-  },[state])
+  useEffect(() => {
+    // console.log("state", state);
+  }, [state]);
+
+  const { state2, dispatch2 } = useContext(ReducerContext);
   return (
     <div>
       <p>Count: {state.count}</p>
@@ -71,6 +75,10 @@ const MyComponent = () => {
         {/* Your content here */}
       </div>
       <button onClick={() => dispatch({ type: "CHANGE_COLOR" })}>Change Color</button>
+      <br />
+      <h4>{state2.count}</h4>
+      <button onClick={() => dispatch2({ type: "INCREMENT" })}>add 1</button>
+      <Link href={"/reducer/display-app"}>gogogogog</Link>
     </div>
   );
 };

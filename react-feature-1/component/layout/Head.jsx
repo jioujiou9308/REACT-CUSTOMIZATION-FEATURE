@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useMemo, useCallback, useRef } from "react";
+import React, { useState, useEffect, useReducer, useMemo, useCallback, useRef, memo } from "react";
 
 const Head = () => {
   const initState = {
@@ -39,7 +39,7 @@ const Head = () => {
       clearInterval(id);
     };
   }, [start, times]);
-  console.log('Header Render');
+  console.log("Header Render");
   return (
     <div style={{ width: "full", backgroundColor: "yellow" }}>
       <div>Head</div>
@@ -54,4 +54,4 @@ const Head = () => {
   );
 };
 
-export default Head;
+export default memo(Head);
