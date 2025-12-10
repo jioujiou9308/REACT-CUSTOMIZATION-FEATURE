@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 import Layout from "../component/Layout/layout";
 import { createContext, useReducer, useMemo } from "react";
 

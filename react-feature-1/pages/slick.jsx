@@ -11,7 +11,7 @@ const slick = () => {
     slidesToScroll: 1,
     adaptiveHeight: true,
   };
-  
+
   return (
     <div>
       {" "}
