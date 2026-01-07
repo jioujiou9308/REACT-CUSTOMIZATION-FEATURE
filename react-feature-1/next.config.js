@@ -14,6 +14,7 @@ const nextConfig = {
       "www.themoviedb.org",
       "hyte-geoip.vercel.app",
       "han.blob.core.windows.net",
+      "hyte.com",
     ],
     formats: ["image/avif", "image/webp"],
   },

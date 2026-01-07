@@ -4,6 +4,7 @@ import axios from "axios";
 // You can pass { baseURL, headers, topic } to customize per-service behavior.
 export function createService(customConfig = {}) {
   const { topic, ...axiosConfig } = customConfig;
+
   const instance = axios.create({
     timeout: 20000,
     ...axiosConfig,
