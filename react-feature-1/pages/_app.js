@@ -1,5 +1,8 @@
 import "../styles/globals.css";
 import Layout from "../component/Layout/layout";
+import { GtmHead } from "../component/GtmHead";
+import { GtmBody } from "../component/GtmBody";
+import Head from "next/head";
 import { createContext, useReducer, useMemo } from "react";
 
 export const ReducerContext = createContext();
@@ -32,13 +35,20 @@ export default function App({ Component, pageProps }) {
       state2: state,
       value: "fakeValue",
     }),
-    [state, dispatch]
+    [state, dispatch],
   );
   return (
-    <ReducerContext.Provider value={{ memoValue }}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ReducerContext.Provider>
+    <div>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {GtmHead()}
+      </Head>
+      <ReducerContext.Provider value={{ memoValue }}>
+        <GtmBody />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ReducerContext.Provider>
+    </div>
   );
 }
