@@ -32,17 +32,38 @@ export const gtmButtonClick = ({ button_name, section }) => {
 
 // 表單提交追蹤
 export const gtmBuyProductButton = () => {
-  gtmEvent({
+  // 改用安全清空：只清 event，不清整個 ecommerce
+  window.dataLayer = window.dataLayer || [];
+
+  dataLayer.push({
     event: "purchase",
     ecommerce: {
-      transaction_id: "ORDER_12345",
-      value: 299.99,
-      currency: "USD",
+      transaction_id: `TXN-${Date.now()}-${Math.floor(Math.random() * 10000)}`, // 隨機產生
+      value: Math.floor(Math.random() * 100) + 1, // 1~100 隨機
+      tax: 5.0,
+      shipping: 2,
+      currency: "TWD", // ✅ OK
+      coupon: "oxxo_sale",
       items: [
+        // ✅ 格式完美
         {
-          item_id: "SKU_001",
-          item_name: "Y70 Case",
-          price: 299.99,
+          item_id: "oxxo12345",
+          item_name: "OXXO 公仔",
+          affiliation: "OXXO Store",
+          coupon: "oxxo_sale", // items 內 coupon 可選
+          discount: 2,
+          index: 0,
+          item_brand: "OXXO",
+          item_category: "toy",
+          item_category2: "cute",
+          item_category3: "kids",
+          item_category4: "robot",
+          item_category5: "big",
+          item_list_id: "oxxo_products",
+          item_list_name: "OXXO Products",
+          item_variant: "XOOX",
+          location_id: "Taiwan1234567",
+          price: 9.99, // ✅ 數字
           quantity: 1,
         },
       ],
